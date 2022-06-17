@@ -2,7 +2,10 @@ package platform
 
 import (
 	"math/rand"
+	"net/http"
 	"time"
+
+	"github.com/dimfeld/httptreemux/v5"
 )
 
 func GenerateID(size int) string {
@@ -17,4 +20,8 @@ func GenerateID(size int) string {
 		result[i] = vocab[idx]
 	}
 	return string(result)
+}
+
+func GetRouteParams(r *http.Request) map[string]string {
+	return httptreemux.ContextParams(r.Context())
 }
